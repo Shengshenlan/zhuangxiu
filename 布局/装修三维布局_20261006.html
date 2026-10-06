@@ -14,8 +14,8 @@
 </head>
 <body>
 <main class="page">
-<header><div class="brand"><div class="mark" aria-hidden="true">岚</div><div><strong>家，慢慢成形</strong><div class="eyebrow">RENOVATION / SPATIAL STUDY</div></div></div><div class="version">方案 2026.10.06<br>两人 · 一只猫</div></header>
-<section class="intro"><div><h1>客厅双工位，保留两间卧室</h1><p>按现有图面净尺寸排布，看看每天生活与使用电脑能否兼顾。</p></div><span class="badge">图面方案 · 待现场复尺</span></section>
+<header><div class="brand"><div class="mark" aria-hidden="true">岚</div><div><strong>家，慢慢成形</strong><div class="eyebrow">RENOVATION / SPATIAL STUDY</div></div></div><div class="version">方案 2026.10.06 · 第2版<br>两人 · 一只猫</div></header>
+<section class="intro"><div><h1>双工位靠窗，餐桌随用随收</h1><p>两台台式机各一块屏幕；床换朝向，并比较上方储物空间。</p></div><span class="badge">图面方案 · 待现场复尺</span></section>
 <div class="workspace">
 <aside class="sidebar" aria-label="房间与布局说明">
 <div class="section-label">选择一个空间</div>
@@ -29,27 +29,30 @@
 <button class="room-button" data-room="balcony" aria-pressed="false"><span>阳台 · 洗烘与猫砂</span><small>3.05 × 1.09m</small></button>
 </nav>
 <hr class="divider">
-<div class="selected-detail" aria-live="polite"><h2 class="detail-title" id="detail-title">把工位放到上方客餐区</h2><p class="detail-text" id="detail-text">两张桌子错开成L形，下方保留沙发与电视。采用小餐桌和侧几，给进门、进房与阳台留出路线。</p><ul class="detail-list" id="detail-list"><li>双屏桌160×70cm，单屏桌120×70cm</li><li>餐桌日常80×60cm，先按两人坐</li><li>床和客床均为方案占位，尚未采购</li></ul><div class="measure"><span id="measure-label">首批＋后续＋机动</span><strong id="measure-value">约 13.43 万元</strong></div></div>
+<div class="selected-detail" aria-live="polite"><h2 class="detail-title" id="detail-title">把两个单屏工位移到窗前两侧</h2><p class="detail-text" id="detail-text">两张桌子沿靠阳台的两侧墙摆放，中间留去阳台的路线。沙发前移，餐桌改为带收纳的折叠款。</p><ul class="detail-list" id="detail-list"><li>两张120×60cm桌，各放一台主机和一块屏幕</li><li>餐桌收拢30×80cm，移出后展开120×80cm</li><li>新增浅顶柜先作备选，约3500元另列</li></ul><div class="measure"><span id="measure-label">基准预算（新增顶柜另列）</span><strong id="measure-value">约 13.43 万元</strong></div></div>
 <label class="bed-field"><span class="section-label">比较床长与脚边通道</span><select id="bed-length" aria-label="主卧床垫长度"><option value="2.1">1.8 × 2.1m（初步建议）</option><option value="2.0">1.8 × 2.0m（比较占位）</option></select></label>
+<label class="bed-field"><span class="section-label">比较床头朝向</span><select id="bed-facing" aria-label="主卧床头朝向"><option value="right">床头靠图面右侧墙（本版）</option><option value="left">床头靠图面左侧墙（原方案）</option></select></label>
+<label class="bed-field"><span class="section-label">收纳餐桌</span><select id="dining-mode" aria-label="折叠餐桌状态"><option value="closed">收拢靠墙 · 日常</option><option value="open">移出展开 · 用餐</option></select></label>
 <p class="help">鼠标拖动旋转，滚轮缩放。手机可单指旋转、双指缩放。点击房间或家具查看对应说明。</p>
 </aside>
 <section class="viewer" aria-label="可旋转的三维户型模型">
-<div class="toolbar"><div class="segments" aria-label="视角"><button id="view-3d" aria-pressed="true">三维</button><button id="view-top" aria-pressed="false">俯视</button></div><label class="field">墙体<select id="walls"><option value="cut">剖切观看</option><option value="full">约2.7m整高</option><option value="none">隐藏</option></select></label><label class="check"><input id="dimensions" type="checkbox">尺寸</label><label class="check"><input id="future" type="checkbox" checked>后补设备</label></div>
+<div class="toolbar"><div class="segments" aria-label="视角"><button id="view-3d" aria-pressed="true">三维</button><button id="view-top" aria-pressed="false">俯视</button></div><label class="field">墙体<select id="walls"><option value="cut">剖切观看</option><option value="full">约2.7m整高</option><option value="none">隐藏</option></select></label><label class="check"><input id="dimensions" type="checkbox">尺寸</label><label class="check"><input id="future" type="checkbox" checked>后补设备</label><label class="check"><input id="top-cabs" type="checkbox" checked>新增顶柜（备选）</label></div>
 <div class="canvas-wrap" id="viewport"><div class="scene-caption"><strong id="view-caption">双工位方案 / 三维总览</strong>墙体已剖切 · 家具按占位尺寸</div><svg id="scene" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="房屋的三维家具布局，可拖动旋转"></svg><div class="scale-key"><span class="scale-bar" id="scale-bar"></span><span>1米</span></div><div class="zoom-controls" aria-label="调整视图"><button id="zoom-out" aria-label="缩小">−</button><button id="zoom-in" aria-label="放大">+</button><button id="reset" aria-label="恢复全屋初始视角">复位</button></div></div>
 <div class="view-footer"><div class="legend"><span><i class="swatch"></i>首批 / 固定预留</span><span><i class="swatch future"></i>后续采购占位</span></div><span>门窗位置与墙厚为图面近似</span></div>
 </section>
 </div>
 <section class="below" aria-label="主要布局取舍">
-<article class="note"><h2>两张桌子，错开摆</h2><p>双屏桌沿上方墙，单屏桌沿次卧外侧墙。避开次卧门洞；餐区保持紧凑，进门至厨房一侧约留75cm通道。</p></article>
-<article class="note"><h2>主卧要用完整床架尺寸算</h2><p id="bed-note">床垫180×210cm，示意床架184×218cm。床头靠左侧墙，脚边约63cm；顶柜、挂衣杆和帘子集中在进门对面，另留浅梳妆台。</p></article>
-<article class="note"><h2>晚买的设备，接口先留</h2><p>洗碗机柜位、机器人基站和电动窗帘电源先定。阳台洗烘机朝走廊方向开门，生活污水接口与安装条件需现场确认。</p></article>
+<article class="note"><h2>靠近窗，保留阳台通路</h2><p>两张120×60cm桌沿两侧墙摆，屏幕侧对窗。按图中58cm椅子收近桌边，中间约82cm；进阳台前先收椅，真实电脑椅需复尺。</p></article>
+<article class="note"><h2>主卧要用完整床架尺寸算</h2><p id="bed-note">床垫180×210cm，示意床架184×218cm。本版床头换到右侧墙，左侧脚边约63cm；保留挂衣区和浅梳妆台，可切回原朝向比较。</p></article>
+<article class="note"><h2>顶柜沿墙，先做浅柜</h2><p>工位、电视墙及主卧门洞上方试排30cm深顶柜，柜底约2.2m；次卧柜上补顶层。新增部分约2500～5500元，未计入13.43万元基准预算；固定条件待现场核对。</p></article>
 </section>
 <details><summary>查看尺寸依据与尚未确认的部分</summary><table class="source-table"><thead><tr><th>依据</th><th>本模型如何处理</th></tr></thead><tbody>
 <tr><td>房间净尺寸</td><td>主卧2.83×3.37m、次卧2.55×3.14m、厨房2.06×2.15m、阳台3.05×1.09m按图面尺寸建模。净高约2.7m为用户自述。</td></tr>
 <tr><td>位置与外轮廓</td><td>保持原图中两卧、客餐厅、右侧厨卫、下方阳台的关系，外轮廓约9.25×9.12m；复杂墙线和卫生间凹角按图面近似。图示不能代替复尺。</td></tr>
 <tr><td>墙厚与门窗</td><td>墙厚、门宽、窗宽、窗台高度均未知；模型暂用12～25cm墙厚、约80～88cm房门等占位。颜色、材质、采光仅用于阅读布局，朝向未知。</td></tr>
-<tr><td>家具建议</td><td>床、桌椅、沙发、餐桌和柜体都是本版拟定尺寸；两张桌子放客厅并未由用户最终确认。次卧暂按单人客床，不代表已明确留宿人数。</td></tr>
+<tr><td>家具建议</td><td>各工位单屏、向客厅窗边靠近、收纳餐桌及床换朝向来自最新要求；桌柜外尺寸、床头换到右侧的具体方案仍需复核。新增顶柜为备选，次卧客床暂按单人占位。</td></tr>
 <tr><td>主卧紧凑程度</td><td>床脚约63cm、窗前约15cm，均基于示意床架。不同床架、窗帘厚度、开窗方式会改变可用空间；挂衣区约1.3m，衣物量较多时需补次卧收纳。</td></tr>
+<tr><td>上方储物</td><td>新增浅柜底部暂按2.2m、顶部2.65m；次卧顶层为2.3～2.65m。净高仅为自述，梁、空调、窗帘及柜门开启均需复测。柜体须按墙体材料可靠固定，不能仅挂在装饰吊顶上。</td></tr>
 <tr><td>工程条件</td><td>后加隔间已从方案中移除，但可拆范围需核对结构。洗衣机、洗碗机、机器人、燃气热水器的上下水、排烟与安装点位尚未实测。</td></tr>
 </tbody></table></details>
 <footer><span>布局用于尺寸讨论与全包询价；未形成施工图。</span><a href="https://github.com/Shengshenlan/zhuangxiu" target="_blank" rel="noopener">装修需求与预算 ↗</a></footer>
@@ -61,10 +64,10 @@
 const $=id=>document.getElementById(id);
 const palette={floor:'#dcded4',wet:'#c6d1cd',wood:'#b49b79',oak:'#a48664',wall:'#eeeee4',trim:'#c5cec2',sage:'#718673',blue:'#738c98',dark:'#303b3d',cream:'#f2eee2',future:'#c8b193',glass:'#afc4c1',shadow:'#617264'};
 const roomData={
- all:{title:'把工位放到上方客餐区',text:'两张桌子错开成L形，下方保留沙发与电视。采用小餐桌和侧几，给进门、进房与阳台留出路线。',list:['双屏桌160×70cm，单屏桌120×70cm','餐桌日常80×60cm，先按两人坐','床和客床均为方案占位，尚未采购'],metric:'首批＋后续＋机动',value:'约 13.43 万元',target:[4.65,.4,4.45],zoom:1},
- living:{title:'双工位放上方，休闲区放下方',text:'两个工位避开次卧门洞，椅子错开。下方约3.05m宽，放2m沙发和浅电视柜，不放大茶几。',list:['双屏桌160×70cm；单屏桌120×70cm','桌椅附近较紧，需按两人同时使用复尺','入口至厨房一侧示意通道约75cm'],metric:'下方客厅净宽',value:'3.05 m',target:[4.1,.5,3.55],zoom:1.24},
- master:{title:'长床、挂衣与梳妆同时排入',text:'床头靠左侧墙；进门前方留顶柜、衣杆与帘子，右上方放浅梳妆台。床靠窗一侧偏紧，需要核对窗帘和开窗。',list:['床架占位184×218cm，床垫180×210cm','挂衣区宽约130cm、深55cm','梳妆台64×40cm，凳子使用后收进台下'],metric:'当前床脚通道',value:'约 63 cm',target:[6.25,.65,6.55],zoom:1.72},
- guest:{title:'把次卧留给留宿与补充收纳',text:'一年偶尔来客，先按单人客床占位。工位移出后，次卧保留可进出空间和补充储物。',list:['单人床垫100×200cm，仅作预算占位','约1m宽收纳柜为本版建议','留宿人数与床的具体形式尚未确定'],metric:'图面净尺寸',value:'2.55 × 3.14 m',target:[1.52,.5,1.85],zoom:1.80},
+ all:{title:'把两个单屏工位移到窗前两侧',text:'两张桌子沿靠阳台的两侧墙摆放，中间留去阳台的路线。沙发前移，餐桌改为带收纳的折叠款。',list:['两张120×60cm桌，各放一台主机和一块屏幕','餐桌收拢30×80cm，移出后展开120×80cm','新增浅顶柜先作备选，约3500元另列'],metric:'基准预算（新增顶柜另列）',value:'约 13.43 万元',target:[4.65,.4,4.45],zoom:1},
+ living:{title:'窗前双工位，餐桌随用随收',text:'两张桌子沿下方客厅两侧墙靠近阳台，屏幕侧对窗；沙发前移，电视仍在对侧。上方客餐区使用带抽屉的折叠餐桌。',list:['两张桌子各120×60cm，全部单屏','椅子收近桌边时中间约82cm，进阳台先收椅','餐桌收拢30×80cm，展开120×80cm'],metric:'椅子收近时的中间通路',value:'约 82 cm',target:[3.55,.65,5.70],zoom:1.36},
+ master:{title:'调换床头，比较脚边通道',text:'先把“床调个面”按床头左右对调处理；保留原朝向可比较。门洞上方试排浅顶柜，挂衣区仍在上方墙，梳妆台靠右侧。',list:['床架占位184×218cm，床垫180×210cm','床头靠图面右侧，脚边通道在左侧','挂衣区宽130cm；梳妆台64×40cm'],metric:'当前床脚通道',value:'约 63 cm',target:[6.25,.65,6.55],zoom:1.72},
+ guest:{title:'把次卧留给留宿与补充收纳',text:'一年偶尔来客，先按单人客床占位。工位移出后，次卧保留可进出空间和补充储物。',list:['单人床垫100×200cm，仅作预算占位','约1m宽收纳柜，上方35cm高顶层为备选','留宿人数与床的具体形式尚未确定'],metric:'图面净尺寸',value:'2.55 × 3.14 m',target:[1.52,.5,1.85],zoom:1.80},
  kitchen:{title:'小厨房保留日常做饭功能',text:'冰箱放左上，右侧做烟机、灶台与水槽，南侧短柜预留洗碗机。采用基础L形橱柜方案。',list:['地柜深约60cm，台面高约85cm','洗碗机先留60cm宽柜位，型号后定','烟灶为天然气；热水器示意位置待核安装'],metric:'图面净尺寸',value:'2.06 × 2.15 m',target:[7.9,.65,2.28],zoom:1.85},
  bath:{title:'蹲便器，开放式淋浴',text:'保持蹲便器形式，淋浴不加玻璃隔断。雨淋花洒放上方凹角，洗手盆和蹲便分别靠右侧。',list:['卫生间凹角边界按图面近似','需要现场核对蹲坑下沉、管线和排水','不做隔断，洗手区同样需考虑水花'],metric:'原图标注面积',value:'2.79 ㎡',target:[6.68,.6,3.95],zoom:1.90},
  balcony:{title:'洗烘朝长边开门，猫砂在另一端',text:'阳台只有约1.09m深，洗烘一体机放右端、机门朝左，避免朝窄边开门。猫砂放左端，与客厅食水区分开。',list:['洗烘机占位约62×64cm，实际型号未定','生活污水接口与电源需现场核对','外窗防护按猫的活动需要设计'],metric:'图面净尺寸',value:'3.05 × 1.09 m',target:[3.0,.4,8.30],zoom:1.80}
@@ -78,8 +81,8 @@ const floors={
  balcony:[[1.55,7.78],[4.60,7.78],[4.60,8.87],[1.55,8.87]]
 };
 const footprint=[[0,0],[6.94,0],[6.94,1.00],[9.25,1.00],[9.25,3.63],[7.92,3.63],[7.92,8.63],[4.84,8.63],[4.84,9.12],[1.31,9.12],[1.31,3.62],[0,3.62]];
-const state={yaw:.78,pitch:1.02,zoom:1,pan:[0,0],target:[4.65,.4,4.45],room:'all',walls:'cut',dimensions:false,future:true,bedLength:2.1,view:'3d'};
-let faces=[],pins=[],furniture=[],lastProjection=null,scheduled=false;
+const state={yaw:.78,pitch:1.02,zoom:1,pan:[0,0],target:[4.65,.4,4.45],room:'all',walls:'cut',dimensions:false,future:true,bedLength:2.1,bedFacing:'right',diningOpen:false,topCabs:true,view:'3d'};
+let faces=[],pins=[],furniture=[],monitors=[],cabinetVolumes=[],lastProjection=null,scheduled=false;
 const add=(v,n,color,room='',extra={})=>faces.push({v,n,color,room,...extra});
 function transform(p,x,y,z,a){const c=Math.cos(a),s=Math.sin(a);return[x+p[0]*c+p[2]*s,y+p[1],z-p[0]*s+p[2]*c];}
 function box(name,x,y,z,w,h,d,color,room,a=0,extra={}){
@@ -98,6 +101,27 @@ function cylinder(name,x,y,z,r,h,color,room,axis='y',rz=r,extra={}){
 function shadow(x,z,w,d,room){rect('',x-w/2-.035,z-d/2-.035,x+w/2+.055,z+d/2+.055,.031,palette.shadow,room,{alpha:.11});}
 function piece(name,x,z,w,d,room,build,future=false){if(future&&!state.future)return;furniture.push({name,x,z,w,d,room,future});shadow(x,z,w,d,room);build({future});}
 function chair(name,x,z,a,room,office=false){piece(name,x,z,office?.58:.46,office?.58:.45,room,e=>{box(name,x,.44,z,.46,.09,.45,office?palette.dark:palette.wood,room,a,e);const back=transform([0,0,.19],x,0,z,a);box(name,back[0],.48,back[2],.47,office?.58:.38,.06,office?'#495755':palette.wood,room,a,e);if(office){cylinder(name,x,.10,z,.035,.34,palette.dark,room);box(name,x,.06,z,.48,.04,.05,palette.dark,room,a);box(name,x,.06,z,.05,.04,.48,palette.dark,room,a);}else{for(const u of [-.18,.18])for(const v of[-.17,.17]){const q=transform([u,0,v],x,0,z,a);box(name,q[0],.035,q[2],.028,.40,.028,palette.oak,room);}}});}
+
+function highCabinet(name,x,z,w,d,bottom,h,room,front='-z',optional=true){
+ const extra={topCab:optional,alpha:optional?.72:1};cabinetVolumes.push({name,x,z,w,d,bottom,h,room,optional});
+ box(name,x,bottom,z,w,h,d,palette.cream,room,0,extra);
+ if(front==='-z')box(name+'门缝',x,bottom+.02,z-d/2-.006,.012,h-.04,.008,palette.trim,room,0,extra);
+ else box(name+'门缝',x+(front==='+x'?1:-1)*(w/2+.006),bottom+.02,z,.008,h-.04,.012,palette.trim,room,0,extra);
+}
+function windowDesk(name,x,screenX,keyboardX,chairX,angle){
+ const z=6.91;piece(name,x,z,.60,1.20,'living',e=>{box(name,x,.72,z,.60,.05,1.20,palette.wood,'living',0,e);for(const xx of[x-.255,x+.255])for(const zz of[z-.54,z+.54])box('桌腿',xx,.025,zz,.035,.695,.035,palette.dark,'living');box(name+'主机',x,.035,7.25,.43,.47,.23,palette.dark,'living');box(name+'显示器',screenX,.89,z,.035,.35,.62,palette.dark,'living');box(name+'显示画面',screenX+(screenX<x?.024:-.024),.90,z,.007,.31,.57,'#507071','living');box('显示器支柱',screenX,.77,z,.035,.13,.035,palette.dark,'living');box('显示器支架',screenX,.772,z,.15,.012,.23,palette.dark,'living');rect('键盘',keyboardX-.075,z-.28,keyboardX+.075,z+.24,.779,palette.dark,'living');rect('鼠标',keyboardX-.05,z+.29,keyboardX+.05,z+.40,.779,palette.dark,'living');});
+ monitors.push({name:name+'显示器',x:screenX,z,room:'living',screenPlane:'yz'});chair(chairX<3?'已有电脑椅':'补购电脑椅',chairX,z,angle,'living',true);
+}
+function foldingTable(){
+ const x=state.diningOpen?4.20:3.16,z=1.40,w=state.diningOpen?1.20:.30;
+ piece('收纳折叠餐桌',x,z,w,.80,'living',e=>{box('餐桌抽屉柜体',x,.07,z,.26,.645,.70,palette.wood,'living',0,e);for(const yy of[.29,.51])box('抽屉分缝',x+.136,yy,z,.008,.008,.66,palette.trim,'living');box('中央台面',x,.73,z,.30,.045,.80,palette.wood,'living');
+  for(const side of[-1,1]){if(state.diningOpen){box('展开折叠桌翼',x+side*.375,.73,z,.45,.045,.80,palette.wood,'living');box('展开支腿',x+side*.52,.065,z,.035,.665,.67,palette.oak,'living');}else box('收起折叠桌翼',x+side*.139,.28,z,.022,.45,.80,palette.wood,'living');}
+  for(const xx of[x-.10,x+.10])for(const zz of[z-.27,z+.27])cylinder('餐桌脚轮',xx,.025,zz,.027,.045,palette.dark,'living');
+  if(!state.diningOpen)for(const zz of[z-.22,z+.22])box('收纳折叠椅',x,.10,zz,.12,.56,.035,palette.dark,'living');
+ });
+ if(state.diningOpen){chair('展开餐椅一',3.23,1.40,-Math.PI/2,'living');chair('展开餐椅二',5.17,1.40,Math.PI/2,'living');cylinder('水杯',4.42,.777,1.40,.03,.075,palette.cream,'living');}
+}
+
 function tileGrid(poly,room,color){const xs=poly.map(p=>p[0]),zs=poly.map(p=>p[1]);const loX=Math.min(...xs),hiX=Math.max(...xs),loZ=Math.min(...zs),hiZ=Math.max(...zs);function hits(v,axis){const out=[];for(let i=0;i<poly.length;i++){let a=poly[i],b=poly[(i+1)%poly.length];if((a[axis]<=v&&b[axis]>v)||(b[axis]<=v&&a[axis]>v)){let t=(v-a[axis])/(b[axis]-a[axis]);out.push(a[1-axis]+t*(b[1-axis]-a[1-axis]));}}return out.sort((a,b)=>a-b);}
  const step=room==='bath'?.30:.60;
  for(let x=Math.ceil(loX/step)*step;x<hiX;x+=step){const h=hits(x,0);for(let i=0;i<h.length-1;i+=2)rect('',x-.003,h[i],x+.003,h[i+1],.023,color,room);}
@@ -114,7 +138,7 @@ function opening(axis,pos,start,end,t,kind,room){
 }
 function doorLeaf(name,x,z,w,a,room){const h=state.walls==='full'?2.08:.66;const mid=transform([w/2,0,0],x,0,z,a);box(name,mid[0],.03,mid[2],w,h,.04,palette.wood,room,a,{alpha:.85,door:true});}
 function pin(text,x,y,z,room,secondary=''){pins.push({text,x,y,z,room,secondary});}
-function buildScene(){faces=[];pins=[];furniture=[];
+function buildScene(){faces=[];pins=[];furniture=[];monitors=[];cabinetVolumes=[];
  // 底板、净地面及瓷砖网格。
  add(footprint.map(p=>[p[0],-.13,p[1]]),[0,1,0],'#d0d6cb');
  for(let i=0;i<footprint.length;i++){let a=footprint[i],b=footprint[(i+1)%footprint.length];add([[a[0],-.13,a[1]],[b[0],-.13,b[1]],[b[0],0,b[1]],[a[0],0,a[1]]],[b[1]-a[1],0,a[0]-b[0]],'#aab8ab');}
@@ -127,23 +151,21 @@ function buildScene(){faces=[];pins=[];furniture=[];
  wall(6.70,.24,6.94,1.68,'kitchen');opening('z',6.82,1.68,2.88,.24,'door','kitchen');wall(6.70,2.88,6.94,3.63,'kitchen');wall(6.94,1.00,9.25,1.24,'kitchen');wall(9.00,1.24,9.25,3.63,'kitchen');wall(6.94,3.39,7.98,3.63,'kitchen');opening('x',3.51,7.98,8.94,.24,'window','kitchen');wall(8.94,3.39,9.25,3.63,'kitchen');
  wall(5.82,2.73,6.70,2.849868,'bath');wall(5.82,2.849868,5.94,4.00,'bath');opening('z',5.88,4.00,4.80,.12,'door','bath');doorLeaf('卫生间门',5.94,4.80,.80,0,'bath');wall(5.82,4.80,5.94,4.90,'bath');wall(7.67,3.63,7.92,3.80,'bath');opening('z',7.795,3.80,4.55,.25,'window','bath');wall(7.67,4.55,7.92,4.90,'bath');
  wall(1.31,7.66,2.07,7.78,'balcony');opening('x',7.72,2.07,3.95,.12,'door','balcony');wall(3.95,7.66,4.84,7.78,'balcony');opening('x',8.995,1.55,4.60,.25,'window','balcony');wall(1.31,8.87,1.55,9.12,'balcony');wall(4.60,8.63,4.84,9.12,'balcony');
- // 两台台式机：双屏北桌＋沿次卧外墙的单屏桌。
- piece('双屏电脑桌',4.60,.61,1.60,.70,'living',e=>{box('双屏电脑桌',4.60,.72,.61,1.60,.05,.70,palette.wood,'living',0,e);for(const x of[3.87,5.33])for(const z of[.32,.90])box('桌腿',x,.025,z,.04,.695,.04,palette.dark,'living');box('台式主机',5.11,.035,.62,.22,.47,.40,palette.dark,'living');for(const x of[4.16,4.85]){box('显示器支架',x,.77,.39,.20,.025,.14,palette.dark,'living');box('显示器支柱',x,.79,.38,.03,.11,.03,palette.dark,'living');box('显示器',x,.89,.40,.62,.35,.035,palette.dark,'living');box('显示画面',x,.90,.422,.57,.31,.007,'#507071','living');}rect('键盘',4.22,.59,4.76,.74,.779,palette.dark,'living');rect('鼠标',4.83,.63,4.94,.75,.779,palette.dark,'living');});
- chair('已有电脑椅',4.65,1.30,0,'living',true);
- piece('单屏电脑桌',3.28,1.78,.70,1.20,'living',e=>{box('单屏电脑桌',3.28,.72,1.78,.70,.05,1.20,palette.wood,'living',0,e);for(const x of[3.00,3.56])for(const z of[1.26,2.30])box('桌腿',x,.025,z,.04,.695,.04,palette.dark,'living');box('台式主机',3.27,.035,2.05,.43,.47,.23,palette.dark,'living');box('显示器',3.08,.89,1.76,.04,.35,.62,palette.dark,'living');box('显示画面',3.105,.90,1.76,.007,.31,.57,'#507071','living');box('显示器支柱',3.08,.77,1.76,.035,.13,.035,palette.dark,'living');rect('键盘',3.38,1.47,3.53,2.02,.779,palette.dark,'living');});
- chair('补购电脑椅',4.00,1.96,Math.PI/2,'living',true);
- piece('两人餐桌',5.55,1.90,.80,.60,'living',e=>{box('餐桌台面',5.55,.73,1.90,.80,.045,.60,palette.wood,'living',0,e);for(const x of[5.24,5.86])for(const z of[1.67,2.13])box('餐桌腿',x,.03,z,.035,.70,.035,palette.oak,'living');cylinder('水杯',5.35,.775,1.86,.03,.075,palette.cream,'living');});chair('餐椅',5.55,1.20,Math.PI,'living');chair('餐椅',5.55,2.62,0,'living');
- // 沙发和电视沿下方客厅两侧摆，中央不放大茶几。
- piece('客厅沙发',2.04,5.83,.90,2.00,'living',e=>{box('沙发底座',2.04,.12,5.83,.88,.30,1.98,'#617866','living',0,e);box('沙发靠背',1.66,.35,5.83,.17,.50,2.00,palette.sage,'living');for(const z of[5.35,6.31])box('沙发坐垫',2.12,.40,z,.71,.13,.87,'#879783','living');for(const z of[4.89,6.77])box('沙发扶手',2.06,.26,z,.88,.42,.12,palette.sage,'living');box('沙发小靠枕',1.87,.50,5.35,.14,.27,.35,palette.cream,'living');});
- piece('侧几',1.85,4.49,.40,.40,'living',e=>{box('侧几',1.85,.40,4.49,.40,.05,.40,palette.wood,'living',0,e);cylinder('侧几支撑',1.85,.04,4.49,.065,.36,palette.oak,'living');});
- piece('电视柜',4.41,5.86,.36,1.30,'living',e=>{box('浅电视柜',4.41,.10,5.86,.36,.38,1.30,palette.wood,'living',0,e);});
- piece('电视后补',4.565,5.86,.055,1.23,'living',e=>{box('电视',4.565,.95,5.86,.055,.70,1.23,palette.dark,'living',0,e);box('电视画面',4.531,.985,5.86,.008,.63,1.16,'#748784','living',0,e);},true);
+ // 两台台式机均为单屏，桌子在靠阳台的两侧墙边，中间留通路。
+ windowDesk('窗边单屏桌一',1.90,1.70,2.065,2.38,Math.PI/2);
+ windowDesk('窗边单屏桌二',4.25,4.45,4.085,3.78,-Math.PI/2);
+ foldingTable();
+ // 沙发向上移，电视柜变为120cm长；不用大茶几。
+ piece('客厅沙发',2.04,4.94,.90,2.00,'living',e=>{box('沙发底座',2.04,.12,4.94,.88,.30,1.98,'#617866','living',0,e);box('沙发靠背',1.66,.35,4.94,.17,.50,2.00,palette.sage,'living');for(const z of[4.46,5.42])box('沙发坐垫',2.12,.40,z,.71,.13,.87,'#879783','living');for(const z of[4.00,5.88])box('沙发扶手',2.06,.26,z,.88,.42,.12,palette.sage,'living');box('沙发小靠枕',1.87,.50,4.46,.14,.27,.35,palette.cream,'living');});
+ piece('电视柜',4.41,5.65,.36,1.20,'living',e=>{box('浅电视柜',4.41,.10,5.65,.36,.38,1.20,palette.wood,'living',0,e);});
+ piece('电视后补',4.565,5.65,.055,1.23,'living',e=>{box('电视',4.565,.95,5.65,.055,.70,1.23,palette.dark,'living',0,e);box('电视画面',4.531,.985,5.65,.008,.63,1.16,'#748784','living',0,e);},true);
  if(state.future)box('客厅空调后补',1.66,2.02,4.21,.20,.30,.95,palette.future,'living',0,{future:true});
  piece('机器人基站后补',5.535,3.37,.55,.60,'living',e=>{box('机器人基站',5.535,.035,3.37,.55,.61,.60,palette.future,'living',0,e);cylinder('机器人',5.21,.025,3.37,.17,.08,palette.cream,'living');},true);
- // 主卧：床头靠西侧墙，床脚向东；床架外尺寸用于通道核算。
- const bedStart=4.86,bedEnd=bedStart+state.bedLength+.08,bedMid=(bedStart+bedEnd)/2;
- piece('主卧双人床',bedMid,7.32,state.bedLength+.08,1.84,'master',e=>{box('床架',bedMid,.10,7.32,state.bedLength+.08,.20,1.84,palette.oak,'master',0,e);box('床垫',bedMid,.30,7.32,state.bedLength,.22,1.80,palette.cream,'master');box('床头板',4.875,.11,7.32,.06,.91,1.84,palette.wood,'master');box('被子',bedMid+.18,.52,7.32,state.bedLength-.42,.075,1.77,palette.blue,'master');for(const z of[6.85,7.77])box('枕头',5.21,.53,z,.49,.12,.69,'#e8e5d8','master');box('被沿',5.75,.597,7.32,.05,.015,1.76,'#93a8ac','master');});
- piece('主卧挂衣区',6.45,5.315,1.30,.55,'master',e=>{box('顶柜',6.45,2.10,5.315,1.30,.50,.55,palette.cream,'master',0,e);for(const x of[5.805,7.095])box('收纳侧板',x,.10,5.315,.022,2.00,.55,palette.wood,'master');cylinder('挂衣杆',5.83,1.85,5.32,.012,1.24,palette.dark,'master','x');for(const x of[6.0,6.20,6.42,6.64,6.86])box('挂衣',x,.72,5.32,.085,1.0,.32,['#b5b9a9','#a2b2b1'][Math.round(x*10)%2],'master');for(let i=0;i<7;i++){const x=5.825+i*.045,z=5.595+Math.sin(i*1.9)*.021;box('手拉收纳帘',x,.12,z,.04,1.95,.025,'#c6c9b7','master');}});
+ // 主卧床左右对调；两个朝向都按完整床架计算脚边通道。
+ const headRight=state.bedFacing==='right',frameLength=state.bedLength+.08,bedStart=headRight?7.65-frameLength:4.86,bedEnd=bedStart+frameLength,bedMid=(bedStart+bedEnd)/2,headX=headRight?bedEnd-.015:bedStart+.015,pillowX=headRight?bedEnd-.35:bedStart+.35;
+ piece('主卧双人床',bedMid,7.32,frameLength,1.84,'master',e=>{box('床架',bedMid,.10,7.32,frameLength,.20,1.84,palette.oak,'master',0,e);box('床垫',bedMid,.30,7.32,state.bedLength,.22,1.80,palette.cream,'master');box('床头板',headX,.11,7.32,.06,.91,1.84,palette.wood,'master');box('被子',bedMid+(headRight?-.18:.18),.52,7.32,state.bedLength-.42,.075,1.77,palette.blue,'master');for(const z of[6.85,7.77])box('枕头',pillowX,.53,z,.49,.12,.69,'#e8e5d8','master');box('被沿',headRight?bedEnd-.89:bedStart+.89,.597,7.32,.05,.015,1.76,'#93a8ac','master');});
+ piece('主卧挂衣区',6.45,5.315,1.30,.55,'master',e=>{highCabinet('原需求主卧顶柜',6.45,5.315,1.30,.55,2.20,.45,'master','-z',false);for(const x of[5.805,7.095])box('收纳侧板',x,.10,5.315,.022,2.10,.55,palette.wood,'master');cylinder('挂衣杆',5.83,1.85,5.32,.012,1.24,palette.dark,'master','x');for(const x of[6.0,6.20,6.42,6.64,6.86])box('挂衣',x,.72,5.32,.085,1.0,.32,['#b5b9a9','#a2b2b1'][Math.round(x*10)%2],'master');for(let i=0;i<7;i++){const x=5.825+i*.045,z=5.595+Math.sin(i*1.9)*.021;box('手拉收纳帘',x,.12,z,.04,2.05,.025,'#c6c9b7','master');}});
+ if(state.topCabs){highCabinet('工位一上方浅顶柜',1.73,6.91,.30,1.20,2.20,.45,'living','+x');highCabinet('工位二上方浅顶柜',4.43,6.91,.30,1.20,2.20,.45,'living','-x');highCabinet('电视墙上方浅顶柜',4.43,5.65,.30,1.20,2.20,.45,'living','-x');highCabinet('主卧门洞上方浅顶柜',5.28,5.17,.88,.30,2.20,.45,'master');highCabinet('次卧收纳柜补顶层',2.17,.51,1.00,.50,2.30,.35,'guest');}
  piece('梳妆台',7.45,6.02,.40,.64,'master',e=>{box('梳妆台面',7.45,.73,6.02,.40,.05,.64,palette.wood,'master',0,e);for(const z of[5.76,6.28])box('梳妆台腿',7.46,.03,z,.04,.70,.04,palette.oak,'master');box('梳妆镜',7.635,.91,6.02,.025,.73,.53,palette.glass,'master');});
  piece('梳妆凳',6.96,6.02,.38,.38,'master',e=>{box('梳妆凳',6.96,.36,6.02,.38,.07,.38,palette.sage,'master',0,e);cylinder('凳腿',6.96,.025,6.02,.04,.335,palette.oak,'master');});box('主卧空调',4.95,2.03,6.85,.20,.24,.74,palette.cream,'master');
  // 次卧只放客床与补充收纳，不把工位重新塞回去。
@@ -162,11 +184,11 @@ function buildScene(){faces=[];pins=[];furniture=[];
  // 阳台洗烘机向西开门；猫砂与生活食水区分开。
  piece('洗烘一体机',4.25,8.30,.64,.62,'balcony',e=>{box('洗烘一体机',4.25,.04,8.30,.64,.85,.62,palette.cream,'balcony',0,e);cylinder('洗烘门外圈',3.916,.48,8.30,.215,.018,palette.dark,'balcony','x');cylinder('洗烘门玻璃',3.903,.48,8.30,.165,.011,palette.glass,'balcony','x');box('洗烘控制面板',3.92,.76,8.30,.012,.055,.42,palette.dark,'balcony');});
  piece('猫砂盆',1.99,8.28,.61,.55,'balcony',e=>{box('猫砂盆',1.99,.035,8.28,.61,.32,.55,'#adad91','balcony',0,e);box('猫砂',1.99,.356,8.28,.50,.009,.44,'#d2c6a7','balcony');});
- piece('猫爬架',1.86,7.24,.50,.50,'living',e=>{box('猫爬架底',1.86,.03,7.24,.50,.055,.50,palette.wood,'living',0,e);cylinder('猫抓柱',1.86,.085,7.24,.055,1.03,'#b6a58a','living');box('猫爬架平台',1.86,1.11,7.24,.44,.045,.44,palette.wood,'living');});
- for(const z of[3.94,4.17])cylinder('猫食水碗',1.79,.025,z,.085,.045,palette.cream,'living');
+ piece('猫爬架',3.25,.57,.50,.50,'living',e=>{box('猫爬架底',3.25,.03,.57,.50,.055,.50,palette.wood,'living',0,e);cylinder('猫抓柱',3.25,.085,.57,.055,1.03,'#b6a58a','living');box('猫爬架平台',3.25,1.11,.57,.44,.045,.44,palette.wood,'living');});
+ for(const z of[2.35,2.61])cylinder('猫食水碗',3.04,.025,z,.085,.045,palette.cream,'living');
  piece('入户窄翻斗鞋柜',5.59,.39,.35,.24,'living',e=>box('窄翻斗鞋柜',5.59,.025,.39,.35,1.00,.24,palette.cream,'living',0,e));
  // 标签位置避开主家具中心；坐标与模型同步。
- pin('双人工位',4.32,.06,2.70,'living','双屏 + 单屏');pin('客厅',3.40,.06,6.97,'living','沙发 / 电视');pin('主卧',6.32,.06,5.95,'master','180 × '+Math.round(state.bedLength*100));pin('次卧',2.02,.06,2.39,'guest','低频留宿');pin('厨房',7.81,.06,2.42,'kitchen','洗碗机柜位先留');pin('卫生间',6.38,.06,4.45,'bath','蹲便 / 开放淋浴');pin('阳台',3.05,.06,8.23,'balcony','洗烘一体');
+ pin('窗边双工位',3.075,.06,6.96,'living','两台电脑 / 各一屏');pin('客厅',3.35,.06,5.28,'living','沙发 / 电视');pin('收纳餐桌',state.diningOpen?4.2:3.16,.79,1.40,'living',state.diningOpen?'展开120 × 80':'收拢30 × 80');pin('主卧',6.32,.06,5.95,'master','180 × '+Math.round(state.bedLength*100));pin('次卧',2.02,.06,2.39,'guest','低频留宿');pin('厨房',7.81,.06,2.42,'kitchen','洗碗机柜位先留');pin('卫生间',6.38,.06,4.45,'bath','蹲便 / 开放淋浴');pin('阳台',3.05,.06,8.23,'balcony','洗烘一体');
 }
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
 function shade(hex,n){const len=Math.hypot(...n)||1,nn=n.map(x=>x/len),k=.79+.19*Math.max(0,nn[0]*-.38+nn[1]*.86+nn[2]*.33);const rgb=[1,3,5].map(i=>Math.round(parseInt(hex.slice(i,i+2),16)*k));return'rgb('+rgb.join(',')+')';}
@@ -178,7 +200,7 @@ function dimensionLine(p1,p2,text,proj,color='#486d64'){const a=proj.project(p1)
 function renderToString(width,height){buildScene();const proj=projection(width,height);lastProjection=proj;const visible=[];
  for(const f of faces){if(f.n[0]*proj.view[0]+f.n[1]*proj.view[1]+f.n[2]*proj.view[2]<-.0001)continue;const p=f.v.map(proj.project),depth=p.reduce((s,v)=>s+v[2],0)/p.length,ground=f.v.every(v=>v[1]<=.04);let alpha=f.alpha===undefined?1:f.alpha;if(f.future)alpha*=.76;if(state.room!=='all'&&f.room&&f.room!==state.room)alpha*=f.wall?.20:.22;visible.push({f,p,depth,alpha,ground});}
  // 地面总在家具之下；跨越全屋的凹多边形不能只按中心深度排序。
- visible.sort((a,b)=>a.ground!==b.ground?(a.ground?-1:1):a.ground?(a.f.v.reduce((s,p)=>s+p[1],0)/a.f.v.length-b.f.v.reduce((s,p)=>s+p[1],0)/b.f.v.length)||a.depth-b.depth:a.depth-b.depth);let out='<title>按图面尺寸排布的三维装修方案</title><desc>左上次卧，右上厨房，中部右侧卫生间，右下主卧，下方阳台；上方客餐区放两个工位。</desc>';
+ visible.sort((a,b)=>a.ground!==b.ground?(a.ground?-1:1):a.ground?(a.f.v.reduce((s,p)=>s+p[1],0)/a.f.v.length-b.f.v.reduce((s,p)=>s+p[1],0)/b.f.v.length)||a.depth-b.depth:a.depth-b.depth);let out='<title>按图面尺寸排布的三维装修方案</title><desc>左上次卧，右上厨房，中部右侧卫生间，右下主卧，下方阳台；靠阳台的两侧墙边各放一个单屏工位，上方为折叠餐区。</desc>';
  // 落地阴影及剖切地台，背景保持安静。
  const floorShadow=footprint.map(p=>proj.project([p[0]+.10,-.20,p[1]+.08]));out+=`<polygon points="${floorShadow.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ')}" fill="#607260" opacity=".08"/>`;
  for(const {f,p,alpha} of visible){const color=shade(f.color,f.n);out+=`<polygon points="${p.map(q=>q[0].toFixed(1)+','+q[1].toFixed(1)).join(' ')}" fill="${color}" stroke="${color}" stroke-width=".4" opacity="${alpha.toFixed(3)}"${f.room?` data-room="${f.room}"`:''}${f.name?` data-name="${esc(f.name)}"`:''}/>`;}
@@ -186,8 +208,8 @@ function renderToString(width,height){buildScene();const proj=projection(width,h
  for(const p of activePins){const q=proj.project([p.x,p.y,p.z]);if(q[0]<38||q[0]>width-38||q[1]<35||q[1]>height-25)continue;const box={x:q[0]-40,y:q[1]-14,w:80,h:32};if(used.some(b=>Math.abs(box.x-b.x)<75&&Math.abs(box.y-b.y)<30)&&state.room==='all')continue;used.push(box);out+=`<g data-room="${p.room}" style="cursor:pointer"><text x="${q[0].toFixed(1)}" y="${q[1].toFixed(1)}" text-anchor="middle" font-size="${textSize}" font-family="system-ui,Microsoft YaHei,sans-serif" font-weight="500" fill="#314d41" stroke="#eaf0e4" stroke-width="3.5" paint-order="stroke">${esc(p.text)}</text>${width>460?`<text x="${q[0].toFixed(1)}" y="${(q[1]+16).toFixed(1)}" text-anchor="middle" font-size="11" font-family="system-ui,Microsoft YaHei,sans-serif" fill="#506d5b" stroke="#eaf0e4" stroke-width="3" paint-order="stroke">${esc(p.secondary)}</text>`:''}</g>`;}
  if(state.dimensions){let show=(r)=>state.room==='all'||state.room===r;
  if(show('guest'))out+=dimensionLine([.24,.08,3.13],[2.79,.08,3.13],'2.55m',proj);
- if(show('master')){out+=dimensionLine([4.84,.08,8.21],[7.67,.08,8.21],'2.83m',proj);out+=dimensionLine([7.53,.08,5.02],[7.53,.08,8.39],'3.37m',proj);out+=dimensionLine([4.86+state.bedLength+.08,.62,7.05],[7.67,.62,7.05],Math.round((7.67-4.86-state.bedLength-.08)*100)+'cm',proj,'#976943');}
- if(show('living'))out+=dimensionLine([1.55,.08,7.49],[4.60,.08,7.49],'3.05m',proj);
+ if(show('master')){out+=dimensionLine([4.84,.08,8.21],[7.67,.08,8.21],'2.83m',proj);out+=dimensionLine([7.53,.08,5.02],[7.53,.08,8.39],'3.37m',proj);const right=state.bedFacing==='right',start=right?4.84:4.86+state.bedLength+.08,end=right?7.65-state.bedLength-.08:7.67;out+=dimensionLine([start,.62,7.05],[end,.62,7.05],Math.round((end-start)*100)+'cm',proj,'#976943');}
+ if(show('living')){out+=dimensionLine([1.55,.08,7.49],[4.60,.08,7.49],'3.05m',proj);out+=dimensionLine([2.67,.62,6.91],[3.49,.62,6.91],'82cm（收椅）',proj,'#976943');}
  if(show('kitchen'))out+=dimensionLine([6.94,.88,3.11],[9.00,.88,3.11],'2.06m',proj);
  if(show('balcony'))out+=dimensionLine([1.55,.09,8.72],[4.60,.09,8.72],'3.05m',proj);
  }
@@ -195,13 +217,13 @@ function renderToString(width,height){buildScene();const proj=projection(width,h
 }
 function render(){const r=$('viewport').getBoundingClientRect(),w=Math.max(280,r.width),h=Math.max(320,r.height);$('scene').setAttribute('viewBox',`0 0 ${w} ${h}`);$('scene').innerHTML=renderToString(w,h);$('scale-bar').style.width=lastProjection.scale.toFixed(0)+'px';$('view-caption').textContent=(state.room==='all'?'双工位方案':roomData[state.room].title)+' / '+(state.view==='top'?'俯视':'三维');$('view-caption').nextSibling.textContent=(state.walls==='full'?'约2.7m整高墙体':state.walls==='none'?'墙体已隐藏':'墙体已剖切')+' · 家具按占位尺寸';updateBedInfo();}
 function requestRender(){if(scheduled)return;scheduled=true;requestAnimationFrame(()=>{scheduled=false;render();});}
-function updateBedInfo(){const gap=Math.round((7.67-4.86-state.bedLength-.08)*100),length=Math.round(state.bedLength*100),frameLength=Math.round((state.bedLength+.08)*100);$('bed-note').textContent=`床垫180×${length}cm，示意床架184×${frameLength}cm。床头靠左侧墙，脚边约${gap}cm；顶柜、挂衣杆和帘子集中在进门对面，另留浅梳妆台。`;if(state.room==='master'){$('measure-value').textContent='约 '+gap+' cm';const list=roomData.master.list.slice();list[0]=`床架占位184×${frameLength}cm，床垫180×${length}cm`;$('detail-list').innerHTML=list.map(s=>'<li>'+esc(s)+'</li>').join('');}}
+function updateBedInfo(){const gap=Math.round((2.83-.02-state.bedLength-.08)*100),length=Math.round(state.bedLength*100),frameLength=Math.round((state.bedLength+.08)*100),right=state.bedFacing==='right';$('bed-note').textContent=`床垫180×${length}cm，示意床架184×${frameLength}cm。床头靠图面${right?'右':'左'}侧墙，${right?'左':'右'}侧脚边约${gap}cm；挂衣区与梳妆台保留，床窗之间约15cm需复尺。`;if(state.room==='master'){$('measure-value').textContent='约 '+gap+' cm';const list=roomData.master.list.slice();list[0]=`床架占位184×${frameLength}cm，床垫180×${length}cm`;list[1]=`床头靠图面${right?'右':'左'}侧，脚边通道在${right?'左':'右'}侧`;$('detail-list').innerHTML=list.map(s=>'<li>'+esc(s)+'</li>').join('');}if(state.room==='living'){const list=roomData.living.list.slice();list[2]=state.diningOpen?'餐桌已移出展开120×80cm，餐椅随用随放':'餐桌已收拢30×80cm，折叠椅收进桌内';$('detail-list').innerHTML=list.map(s=>'<li>'+esc(s)+'</li>').join('');}}
 function selectRoom(id){if(!roomData[id])return;state.room=id;const d=roomData[id];state.target=d.target.slice();state.zoom=d.zoom;state.pan=[0,0];document.querySelectorAll('[data-room].room-button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.room===id)));$('detail-title').textContent=d.title;$('detail-text').textContent=d.text;$('detail-list').innerHTML=d.list.map(s=>'<li>'+esc(s)+'</li>').join('');$('measure-label').textContent=d.metric;$('measure-value').textContent=d.value;requestRender();}
 function setView(view){state.view=view;state.yaw=view==='top'?0:.78;state.pitch=view==='top'?Math.PI/2:1.02;$('view-3d').setAttribute('aria-pressed',String(view==='3d'));$('view-top').setAttribute('aria-pressed',String(view==='top'));requestRender();}
 function reset(){state.pan=[0,0];selectRoom('all');setView('3d');}
 document.querySelectorAll('.room-button').forEach(b=>b.addEventListener('click',()=>selectRoom(b.dataset.room)));
 $('view-3d').addEventListener('click',()=>setView('3d'));$('view-top').addEventListener('click',()=>setView('top'));
-$('walls').addEventListener('change',e=>{state.walls=e.target.value;requestRender();});$('dimensions').addEventListener('change',e=>{state.dimensions=e.target.checked;requestRender();});$('future').addEventListener('change',e=>{state.future=e.target.checked;requestRender();});$('bed-length').addEventListener('change',e=>{state.bedLength=Number(e.target.value);requestRender();});$('reset').addEventListener('click',reset);
+$('walls').addEventListener('change',e=>{state.walls=e.target.value;requestRender();});$('dimensions').addEventListener('change',e=>{state.dimensions=e.target.checked;requestRender();});$('future').addEventListener('change',e=>{state.future=e.target.checked;requestRender();});$('bed-length').addEventListener('change',e=>{state.bedLength=Number(e.target.value);requestRender();});$('bed-facing').addEventListener('change',e=>{state.bedFacing=e.target.value;requestRender();});$('dining-mode').addEventListener('change',e=>{state.diningOpen=e.target.value==='open';requestRender();});$('top-cabs').addEventListener('change',e=>{state.topCabs=e.target.checked;requestRender();});$('reset').addEventListener('click',reset);
 function zoomBy(f){state.zoom=Math.max(.55,Math.min(3.7,state.zoom*f));requestRender();}$('zoom-in').addEventListener('click',()=>zoomBy(1.15));$('zoom-out').addEventListener('click',()=>zoomBy(1/1.15));
 const svg=$('scene'),points=new Map();let drag=null,lastPinch=0,moved=false;
 svg.addEventListener('pointerdown',e=>{points.set(e.pointerId,[e.clientX,e.clientY]);const hit=e.target.closest('[data-room]');svg.setPointerCapture(e.pointerId);drag={x:e.clientX,y:e.clientY,pan:e.button===2||e.shiftKey,room:hit?hit.getAttribute('data-room'):null};moved=false;svg.classList.add('dragging');if(points.size===2){const p=[...points.values()];lastPinch=Math.hypot(p[0][0]-p[1][0],p[0][1]-p[1][1]);}});
@@ -210,7 +232,7 @@ function release(e){const hitRoom=drag&&drag.room;points.delete(e.pointerId);if(
 svg.addEventListener('pointerup',release);svg.addEventListener('pointercancel',release);svg.addEventListener('contextmenu',e=>e.preventDefault());svg.addEventListener('wheel',e=>{e.preventDefault();zoomBy(Math.exp(-e.deltaY*.001));},{passive:false});
 if(typeof ResizeObserver!=='undefined')new ResizeObserver(requestRender).observe($('viewport'));else window.addEventListener('resize',requestRender);
 // 暴露精确几何数据，供尺寸校验；正常使用无需打开开发工具。
-window.RENOVATION_3D={state,floors,footprint,roomData,selectRoom,setView,reset,renderToString,buildScene,getFurniture:()=>furniture,projection};
+window.RENOVATION_3D={state,floors,footprint,roomData,selectRoom,setView,reset,renderToString,buildScene,getFurniture:()=>furniture,getMonitors:()=>monitors,getCabinets:()=>cabinetVolumes,projection};
 render();
 })();
 </script>
