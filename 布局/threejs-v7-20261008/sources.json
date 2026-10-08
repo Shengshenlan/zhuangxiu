@@ -1,0 +1,10 @@
+{
+  "checkedOn": "2026-10-08",
+  "policy": "参考款未定购；页面价格可能随规格、地区、库存和活动变化。不把规划金额冒充网上成交价，也不自动替换基准预算。",
+  "references": [
+    {"budgetName":"两张电脑桌","product":"IKEA LAGKAPTEN / OLOV 120×60cm","price":329,"unit":"每张；两张 658 元","url":"https://www.ikea.cn/cn/zh/p/lagkapten-la-ge-kai-pu-olov-ao-le-fu-shu-zhuo-fang-bai-se-xiang-mu-wen-hei-se-s59416907/","status":"官网页面参考价，页面提示暂时缺货","note":"尺寸方向相符，高度可调 63～93cm；官网明确不适合安装屏幕支架。仅作价格比较，主机托架与受力另核。"},
+    {"budgetName":"餐桌椅","product":"IKEA VIHALS 白色餐椅 805.927.34","price":99.99,"unit":"每把；两把 199.98 元，不含餐桌","url":"https://www.ikea.cn/cn/zh/p/vihals-wei-ha-si-yi-zi-bai-se-80592734/","status":"官网页面参考价，页面提示暂时缺货","note":"45×47×79cm，座高45cm。仅为餐椅价格参照，与模型占位不同；腿间清扫净空待核。"},
+    {"budgetName":"基础智能与网络设备","product":"Xiaomi 路由器 AX3000T","price":159,"unit":"单台，不含音箱、网关及网络安装","url":"https://www.mi.com/shop/buy/detail?product_id=19106","status":"小米商城导航展示价；最终选配与到手价待核","note":"所链接页面标题对应 AX3000T，商城导航展示159元。尚未确认设备柜内天线、散热、接线和全屋覆盖，不据此锁定型号。"}
+  ],
+  "unverified": "其他施工、定制和未定型号项目未取得可核验的同规格网上价格。预算表逐项标为待询价，保留原仓库规划区间。部分小米导航链接会跳到其他商品，因此未采用这些价格。"
+}

@@ -1,0 +1,51 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import { createModel } from './model.js';
+import { summarizeBudget } from './budget-tools.js';
+import { triangulateFace, buildMeshes, disposeGroup } from './geometry.js';
+const budget=JSON.parse(fs.readFileSync(new URL('./budget.json',import.meta.url)));
+assert.equal(budget.length,48);
+assert.deepEqual(summarizeBudget(budget),{phases:[91460,26340,14000],contingency:11800,hardFund:103260,beforeMove:129600,total:143600});
+const upper=structuredClone(budget);upper.find(r=>r.id==='B42').included=true;
+assert.equal(summarizeBudget(upper).total,149700);
+assert.equal(summarizeBudget(upper).contingency,12400);
+const includedByContract=structuredClone(budget);includedByContract.find(r=>r.id==='B48').included=false;
+assert.equal(summarizeBudget(includedByContract).total,142600);
+assert.equal(summarizeBudget(budget.map(r=>({...r,included:false}))).total,0);
+const m=createModel();assert.equal(m.catalog.length,144);assert.equal(new Set(m.catalog.map(c=>c.id)).size,144);
+for(const c of m.catalog)if(['allocated','shared'].includes(c.mode))assert.ok(budget.some(b=>b.name===c.budgetName),c.id+' budget link');
+let s=m.build({phase:1,topCabs:false});
+for(const id of ['entry-cab','master-cab','guest-cab','equipment-speaker-cab','equipment-wifi-cab','squat','basin'])assert.ok(s.objectBounds[id],id+' fixed stage');
+for(const id of ['bed-main','sofa','fridge','desk-1','dw','robot','upper-1'])assert.ok(!s.objectBounds[id],id+' absent before move');
+s=m.build({phase:2});
+for(const id of ['desk-1','desk-2','bed-main','sofa','fridge','washer','vanity'])assert.ok(s.objectBounds[id],id+' move-in');
+for(const id of ['tv','dw','robot','bed-guest'])assert.ok(!s.objectBounds[id],id+' later');
+s=m.build({phase:3});
+for(const id of ['tv','dw','robot','bed-guest'])assert.ok(s.objectBounds[id],id+' planned');
+assert.equal(s.electricalPoints.filter(p=>p.kind==='power').reduce((a,p)=>a+p.count,0),39);
+assert.equal(s.electricalPoints.filter(p=>p.kind==='switch').length,7);
+assert.equal(s.electricalPoints.filter(p=>p.kind==='network').length,5);
+assert.equal(s.electricalPoints.filter(p=>p.kind==='network').reduce((a,p)=>a+p.ports,0),16);
+assert.equal(s.lightFixtures.length,16);
+assert.equal(s.lightFixtures.filter(l=>l.type==='desk').length,2);
+assert.ok(!m.catalog.some(c=>/坐便|淋浴隔断/.test(c.name)));
+for(const bathLayout of ['external','inside'])for(const bedFacing of ['left','right'])for(const bedLength of [2,2.1]){
+  s=m.build({bathLayout,bedFacing,bedLength,phase:3,topCabs:true,walls:'full'});
+  assert.equal(m.objects['basin'].room,bathLayout==='external'?'living':'bath');
+  assert.ok(s.faces.filter(f=>f.objectId==='basin').every(f=>f.room===(bathLayout==='external'?'living':'bath')));
+  for(let i=1;i<=8;i++)assert.ok(s.objectBounds['upper-'+i]);
+  for(const f of s.faces)assert.ok(f.v.flat().every(Number.isFinite),'finite vertices');
+  for(const route of m.robotRoutes[`${bedFacing}-${bedLength}`])assert.ok(route.minimumClearance>=.225,'inherited route metadata');
+  const mattress=s.objectBounds['mattress-main'];assert.ok(Math.abs(mattress.max[0]-mattress.min[0]-bedLength)<.001,'mattress length');
+  const meshes=buildMeshes(s.faces,{catalog:m.objects});
+  for(const mesh of meshes.children)assert.ok([...mesh.geometry.attributes.position.array].every(Number.isFinite),'finite triangles');
+  disposeGroup(meshes);
+}
+for(const poly of Object.values(m.floors)){
+  const area=Math.abs(poly.reduce((a,p,i)=>{const q=poly[(i+1)%poly.length];return a+p[0]*q[1]-q[0]*p[1];},0))/2;
+  const {positions:p}=triangulateFace({v:poly.map(([x,z])=>[x,0,z]),n:[0,1,0]});let total=0;
+  for(let i=0;i<p.length;i+=9)total+=Math.abs((p[i+3]-p[i])*(p[i+8]-p[i+2])-(p[i+6]-p[i])*(p[i+5]-p[i+2]))/2;
+  assert.ok(Math.abs(area-total)<1e-6,'concave floor area');
+}
+console.log('PASS: budget, 3 stages, 144 catalog links, 2 basin layouts, 4 bed arrangements, electrical counts, finite meshes, concave floor areas.');
+console.log('Cleaning route metadata only; no new site measurement or physical collision assessment.');
