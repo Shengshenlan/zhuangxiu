@@ -1,0 +1,24 @@
+README.md
+  h_a94fe95898998b 27
+user_demand.md
+  h_a94fe95898998b 5
+交付/装修方案-v8-20261008/装修方案.html
+  h_a94fe95898998b 1,19
+布局/threejs-v7-20261008/README.md
+  h_a94fe95898998b 1
+布局/threejs-v7-20261008/index.html
+  h_a94fe95898998b 1-2
+户型尺寸.json
+  h_a94fe95898998b 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "77cc7fe6da3aad61d2b8e61065047e7fd2d8ef4f",
+  "prompts": {},
+  "humans": {
+    "h_a94fe95898998b": {
+      "author": "Lan Zhu <zhulan@changtianyun.com>"
+    }
+  }
+}
