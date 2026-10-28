@@ -1427,6 +1427,11 @@ buildDefs(); buildLib(); renderOpenings(); renderDims();
 $('#tip').textContent = TIPS()['2d'];
 fitView(); renderAll();
 </script>
+<section class="only3d" id="utilityPanel" style="position:absolute;left:12px;bottom:44px;z-index:12;width:min(350px,calc(100% - 24px));background:#fffffff2;border:1px solid #c8c1b6;border-radius:8px;padding:10px;box-sizing:border-box">
+<div style="display:flex;gap:8px;align-items:center"><strong>水电点位</strong><select id="utilityMode" aria-label="水电分类"><option value="off">隐藏</option><option value="all" selected>全部点位</option><option value="power">插座 · 橙</option><option value="switch">开关 · 紫</option><option value="network">网口 · 绿</option><option value="water">给排水 · 蓝</option></select></div>
+<div style="display:flex;gap:6px;margin-top:8px"><select id="utilityPoint" aria-label="选择水电点位" style="min-width:0;flex:1"></select><button class="btn" id="utilityLocate">定位</button></div>
+<label style="display:block;font-size:12px;margin-top:6px"><input id="utilityLinks" type="checkbox"> 显示网线连接关系（非施工路径）</label><p id="utilityDetail" style="height:88px;overflow:auto;font-size:12px;line-height:1.6;margin:8px 0"></p>
+<small style="display:block;line-height:1.5">穿透显示便于核对。39原电源面板＋1净水器建议点；7组开关；原16网络端口＋两卧新增4端（含汇集端）。水路8组接口（蓝冷水、红热水、灰排水）。点位不随家具拖动；调整柜位后需重新核对。高度为方案值，新增未计价；无施工走线，配电箱、总阀及排污立管位置待实测。</small></section>
 <script type="module">
 /* ============================================================
  *  3D 场景（three.js）—— 与 2D 共用 state / ui，切换时带过渡动画：
@@ -1490,6 +1495,7 @@ function init(){
 
   archFloor = new THREE.Group(); archUp = new THREE.Group(); furnG = new THREE.Group(); labelG = new THREE.Group(); lampG = new THREE.Group();
   scene.add(archFloor, archUp, furnG, labelG, lampG);
+  rebuildUtilities();
 
   const cv = renderer.domElement; let downAt = null, look = null;
   cv.addEventListener('pointerdown', e => {
@@ -2629,6 +2635,100 @@ function loop(){
 function shot(){ const a = document.createElement('a'); a.download = tr('户型装修方案', 'floor-plan-design') + '-3D.png'; a.href = renderer.domElement.toDataURL('image/png'); a.click(); }
 
 function relang(){ syncWalkTexts(); if (inited) buildLabels(); }
+
+
+// 复用 V8 electricalPlan 点位；数值是米，坐标转换与家具保持一致。
+const head=7.655,foot=4.855,hf='-x',ff='+x';
+const powers=[
+ ['E-P1','living',4.10,1.10,.255,'+z',1,'鞋柜开放格'],['E-P2','living',3.58,1.60,.255,'+z',1,'入户光猫/交换机供电'],
+ ['L-P1','living',1.565,.95,6.46,'+x',2,'工位一电源'],['L-P2','living',4.585,.95,6.46,'-x',2,'工位二电源'],['L-P3','living',4.585,.58,5.65,'-x',3,'电视与游戏主机'],['L-P4','living',1.565,1.10,4.30,'+x',2,'沙发旁充电'],['AC-L','living',1.565,2.25,3.68,'+x',1,'客厅空调预留'],
+ ['M-P1','master',head,1.15,6.76,hf,1,'床头一'],['M-P2','master',head,1.15,7.89,hf,1,'床头二'],['G-P3','guest',2.775,.91,1.64,'-x',2,'次卧梳妆台'],['M-P4','master',foot,.40,7.76,ff,1,'床脚备用'],['AC-M','master',4.855,2.25,7.35,'+x',1,'主卧空调'],
+ ['G-P1','guest',1.49,.95,.255,'+z',1,'客床旁'],['G-P2','guest',2.775,.35,2.05,'-x',2,'客房备用'],['AC-G','guest',2.775,2.25,1.95,'-x',1,'客房空调预留'],
+ ['CUR-L','living',1.93,2.45,7.645,'-z',1,'客厅窗帘预留'],['CUR-M','master',7.32,2.45,8.375,'-z',1,'主卧窗帘预留'],['CUR-G','guest',1.32,2.45,3.365,'-z',1,'次卧窗帘预留'],
+ ['K-P1','kitchen',7.77,1.20,1.255,'+z',1,'冰箱旁可检修'],['K-P2','kitchen',8.985,2.30,1.92,'-x',1,'烟机柜内'],['K-P3','kitchen',8.985,1.20,2.76,'-x',2,'厨房台面'],['K-P4','kitchen',7.55,1.20,3.375,'-z',2,'电饭锅与空气炸锅'],['K-P5','kitchen',8.985,.45,3.22,'-x',1,'洗碗机旁柜检修'],['K-P6','kitchen',8.18,1.50,1.255,'+z',1,'热水器旁'],
+ ['A-P1','balcony',4.585,1.20,8.30,'-x',1,'洗烘机上方干燥位'],['A-P2','balcony',1.565,1.15,8.66,'+x',1,'阳台备用'],['R-P1','living',5.805,.45,4.10,'-x',1,'基站旁检修'],['B-P1','living',5.805,1.15,2.98,'-x',1,'门外干区吹风机'],['D-P1','living',5.805,2.34,4.00,'-x',1,'音箱柜独立供电'],['D-P2','living',5.805,2.34,4.57,'-x',1,'Wi-Fi柜独立供电']
+ ];
+const networks=[['N-E','living',3.58,1.40,.255,'+z',8,'入户弱电汇集（分组示意）'],['N-L1','living',1.565,.60,6.60,'+x',2,'工位一网口'],['N-L2','living',4.585,.60,6.60,'-x',2,'工位二网口'],['N-TV','living',4.585,.58,6.08,'-x',2,'电视网口'],['N-D','living',5.805,2.44,4.57,'-x',2,'门上路由器WAN/LAN']];
+const switches=[['S-E','living',6.685,1.20,1.22,'-x','入户/客厅/餐区'],['S-K','living',6.685,1.20,1.42,'-x','厨房'],['S-M','living',4.588,1.20,4.958,'-x','主卧门外'],['S-MB','master',head,1.15,7.33,hf,'床头双控'],['S-G','guest',2.775,1.20,2.40,'-x','次卧'],['S-B','living',5.805,1.20,3.93,'-x','卫生间灯与排风'],['S-A','living',1.565,1.20,7.48,'+x','阳台']];
+const utilityPoints=[];
+for(const [id,room,x,y,z,face,count,name] of powers)utilityPoints.push({id,room,x,y,z,face,count,name,kind:'power'});
+for(const [id,room,x,y,z,face,ports,name] of networks)utilityPoints.push({id,room,x,y,z,face,ports,count:1,name,kind:'network'});
+for(const [id,room,x,y,z,face,name] of switches)utilityPoints.push({id,room,x,y,z,face,count:1,name,kind:'switch'});
+// 迁移后与最新柜位对齐：洗碗机接口设在南侧相邻抽屉柜的可拆检修仓。
+Object.assign(utilityPoints.find(p=>p.id==='K-P5'),{x:8.1,z:3.375});
+Object.assign(utilityPoints.find(p=>p.id==='B-P1'),{z:3.0});
+for(const [id,name,x,y,z,face,note] of [
+ ['W-K','水槽冷热水 / 排水',8.985,.55,2.42,'-x','水槽柜内阀门与存水弯可检修；净水器另留分支及干燥电源位。'],
+ ['W-D','洗碗机进水 / 排水',8.1,.35,3.375,'-z','相邻柜设可拆检修仓；软管长度、排水连接按所选设备安装图核定。'],
+ ['W-V','门外洗漱台冷热水 / 排水',5.805,.55,3.475,'-x','管口与盆柜背板配合，存水弯和角阀可拆；实际排污接入点待测。'],
+ ['W-R','机器人给水 / 排水预留',5.805,.26,4.1,'-x','基站旁可检修，水电分开；设备后买，接口高度随所选机型复核。'],
+ ['W-A','洗烘机给水 / 排水',4.585,.8,8.3,'-x','阀门能关、设备能拉出；排水高度和防返味方式按安装图。'],
+ ['W-S','开放淋浴冷热水',5.975,1.1,3.68,'+x','无玻璃隔断；混水阀与地漏位置需现场复核防水和坡向。'],
+ ['W-T','蹲便冲水接口',7.525,.8,4.48,'-x','水箱、排污口和蹲台标高待实测，不据此移改原排污管。'],
+ ['W-F','淋浴地漏候选位',6.18,.03,3.8,'+z','地漏与排污立管实际位置待测，不表示已确定暗埋路径。']
+])utilityPoints.push({id,name,x,y,z,face,note,count:1,kind:'water'});
+utilityPoints.push({id:'K-P7',name:'净水器干燥电源预留',room:'kitchen',x:8.985,y:.65,z:2.85,face:'-x',count:1,kind:'power',note:'新增建议，位于水槽旁可检修干燥仓；不计入原39面板，待报价。'});
+for(const [id,name,x,z,face] of [['N-M','主卧备用 Cat6',4.855,7.76,'+x'],['N-G','次卧备用 Cat6',2.775,2.05,'-x']])utilityPoints.push({id,name,x,y:.55,z,face,count:1,ports:1,kind:'network',note:'新增建议：独立链路回入户汇集，两卧共增加2条网线、4个端接，待报价。'});
+Object.assign(utilityPoints.find(p=>p.id==='N-E'),{ports:10,note:'原8端汇集＋两卧建议新增2端；全屋合计10条链路、两端共20端口，新增未计价。'});
+let utilityGroup;
+const utilityColor={power:0xd17a27,switch:0xa968b3,network:0x278879,water:0x328bc5};
+function utilityNote(p){return p.note || (p.kind==='switch'?'原开关位置补零线、常供电与模块容纳空间，保留手动控制；不从其他回路借零线。':p.kind==='network'?'Cat6 独立回入户汇集，强弱电分管；两端标号并做链路测试。端口数含汇集端，不等于网线条数。':p.id.startsWith('CUR')?'保留可检修常供电；电机侧、单双轨和窗帘盒净空待定。':'原方案电源点位；保持可拔插与检修，回路、负荷及保护由电工现场核定。');}
+function rebuildUtilities(){
+ if(!scene)return;
+ if(utilityGroup){utilityGroup.traverse(o=>{if(o.element)o.element.remove();if(o.geometry)o.geometry.dispose();if(o.material)o.material.dispose();});scene.remove(utilityGroup);}
+ utilityGroup=new THREE.Group();scene.add(utilityGroup);
+ const mode=$('#utilityMode').value, selected=$('#utilityPoint').value;
+ if(mode==='off')return;
+ utilityPoints.filter(p=>mode==='all'||p.kind===mode).forEach(p=>{
+  const v=p.face.includes('x'),sign=p.face[0]==='+'?1:-1;
+  if(p.kind==='water'){
+   // 蓝色给水、红色热水、灰色排水接口组；按设备用途显示，非电源面板。
+   const colors=p.id==='W-F'?[0x65727c]:p.id==='W-T'?[0x328bc5]:p.id==='W-S'?[0x328bc5,0xc75450]:['W-K','W-V'].includes(p.id)?[0x328bc5,0xc75450,0x65727c]:[0x328bc5,0x65727c];
+   colors.forEach((color,i)=>{const offset=(i-(colors.length-1)/2)*.12;const port=new THREE.Mesh(new THREE.TorusGeometry(.035,.012,8,20),new THREE.MeshBasicMaterial({color,depthTest:false}));port.position.set(wx(p.x*1000)+(v?0:offset),p.y,wz(p.z*1000)+(v?offset:0));if(v)port.rotation.y=Math.PI/2;if(p.id==='W-F')port.rotation.x=Math.PI/2;port.renderOrder=31;utilityGroup.add(port);});
+  }
+  for(let i=0;i<(p.kind==='water'?0:p.count);i++){
+   const offset=(i-(p.count-1)/2)*.10;
+   const plate=new THREE.Mesh(new THREE.BoxGeometry(v?.025:.086,.086,v?.086:.025),new THREE.MeshBasicMaterial({color:utilityColor[p.kind],depthTest:false}));
+   plate.position.set(wx(p.x*1000)+(v?0:offset),p.y,wz(p.z*1000)+(v?offset:0));plate.renderOrder=30;utilityGroup.add(plate);
+   // 面板插孔 / 网口，显示不同面板而非只放彩色点。
+   for(const d of (p.kind==='switch'?[0]:[-.02,.02])){
+    const hole=new THREE.Mesh(new THREE.BoxGeometry(v?.006:.012,.025,v?.012:.006),new THREE.MeshBasicMaterial({color:0xffffff,depthTest:false}));
+    hole.position.copy(plate.position);hole.position.x+=v?sign*.017:d;hole.position.z+=v?d:sign*.017;hole.renderOrder=31;utilityGroup.add(hole);
+   }
+  }
+  if(p.kind==='network' && p.id!=='N-E' && $('#utilityLinks').checked){
+   const hub=utilityPoints.find(q=>q.id==='N-E');
+   const points=[[hub.x,hub.y,hub.z],[hub.x,2.6,hub.z],[p.x,2.6,p.z],[p.x,p.y,p.z]].map(([x,y,z])=>new THREE.Vector3(wx(x*1000),y,wz(z*1000)));
+   const wire=new THREE.Line(new THREE.BufferGeometry().setFromPoints(points),new THREE.LineDashedMaterial({color:utilityColor.network,dashSize:.10,gapSize:.07,depthTest:false}));wire.computeLineDistances();wire.renderOrder=28;utilityGroup.add(wire);
+  }
+  if(p.id===selected){
+   const el=document.createElement('div');el.className='rlabel';el.textContent=p.id+' '+p.name;el.style.color='#153b49';
+   const label=new CSS2DObject(el);label.position.set(wx(p.x*1000),p.y+.22,wz(p.z*1000));utilityGroup.add(label);
+   const line=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(wx(p.x*1000),.02,wz(p.z*1000)),new THREE.Vector3(wx(p.x*1000),p.y,wz(p.z*1000))]),new THREE.LineDashedMaterial({color:utilityColor[p.kind],dashSize:.07,gapSize:.05,depthTest:false}));line.computeLineDistances();line.renderOrder=32;utilityGroup.add(line);
+  }
+ });
+}
+function utilityList(){
+ const mode=$('#utilityMode').value;
+ const rows=utilityPoints.filter(p=>mode==='all'||p.kind===mode);
+ $('#utilityPoint').innerHTML=rows.map(p=>`<option value="${p.id}">${p.id} · ${p.name}</option>`).join('');
+ $('#utilityPoint').disabled=!rows.length;utilityDetail();
+}
+function utilityDetail(){
+ const p=utilityPoints.find(p=>p.id===$('#utilityPoint').value);
+ $('#utilityDetail').textContent=p?`${p.name} · 中心距地 ${p.y.toFixed(2)} m · ${p.kind==='network'?p.ports+'端口':p.kind==='water'?p.count+'组接口':p.count+'处/面板'}。${utilityNote(p)}`:'选择分类显示点位。';
+ rebuildUtilities();
+}
+$('#utilityLinks').onchange=rebuildUtilities;
+$('#utilityMode').onchange=utilityList;
+$('#utilityPoint').onchange=utilityDetail;
+$('#utilityLocate').onclick=()=>{
+ const p=utilityPoints.find(p=>p.id===$('#utilityPoint').value);if(!p||!active)return;
+ const t=new THREE.Vector3(wx(p.x*1000),Math.max(.4,p.y),wz(p.z*1000));
+ const dir=p.face.includes('x')?new THREE.Vector3(p.face[0]==='+'?1:-1,.6,.3):new THREE.Vector3(.3,.6,p.face[0]==='+'?1:-1);
+ flyTo(pose(t,t.clone().add(dir.multiplyScalar(2.4))));
+};
+utilityList();
 
 window.View3D = {enter, exit, relang, sync:() => sync(), shot, groundAt, flyToRoom:id => active && !anim && flyToRoom(id), walking:() => active && opt.mode === 'walk'};
 </script>
