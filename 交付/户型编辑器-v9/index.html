@@ -447,7 +447,7 @@ let _n = 1;
 const uid = () => 'f' + Date.now().toString(36) + (_n++);
 const F = (type,name,cx,cy,w,d,rot=0,color) => ({id:uid(),type,name,cx,cy,w,d,rot,color:color||typeColor(type)});
 
-function defaultFurniture(){ return [F('counter','厨房右侧地柜',8700,2315,600,2150), F('counter','厨房南侧短柜',7790,3090,1220,600), F('stove','灶台',8700,1600,530,550), F('ksink','水槽',8680,2420,440,390), F('dishwasher','洗碗机预留',7500,3080,590,575), F('fridge','冰箱',7310,1595,680,650), F('bed','主卧床',6750,7300,2180,1840,90), F('wardrobe','主卧衣柜',6710,5315,1820,550), F('desk','工位一',1730,6910,600,1200), F('desk','工位二',4430,6910,600,1200), F('table','餐桌',4380,1900,1200,700), F('shoecab','入户鞋柜',4480,450,420,2140,90), F('vanity','门外洗漱台',5580,3475,700,450,90), F('openbath','开放淋浴',6180,3680,700,450,270), F('squat','蹲便器',7260,4480,460,670), F('washer','洗烘一体机',4250,8300,640,620), F('bed','次卧双人床',2040,1240,1500,2000,0,'#d8c7dc'), F('sofa','客厅沙发',2040,4940,900,2000), F('tvstand','电视柜',4410,5650,1200,360,90), F('cabinet','猫砂盆',1990,8280,610,550), F('chair','餐椅一',3660,1900,450,480), F('chair','餐椅二',5100,1900,450,480)];}
+function defaultFurniture(){ return [F('counter','厨房右侧地柜',8700,2315,600,2150), F('counter','厨房南侧短柜',7790,3090,1220,600), F('stove','灶台',8700,1600,530,550), F('ksink','水槽',8680,2420,440,390), F('fridge','冰箱',7310,1595,680,650), F('bed','主卧床',6750,7300,2180,1840,90), F('wardrobe','主卧衣柜',6710,5315,1820,550), F('desk','工位一',1730,6910,600,1200), F('desk','工位二',4430,6910,600,1200), F('table','餐桌',4380,1900,1200,700), F('shoecab','入户鞋柜',4480,450,420,2140,90), F('vanity','门外洗漱台',5580,3475,700,450,90), F('openbath','开放淋浴',6180,3680,700,450,270), F('squat','蹲便器',7260,4480,460,670), F('washer','洗烘一体机',4250,8300,640,620,180), F('bed','次卧双人床',1240,990,1500,2000,270,'#d8c7dc'), F('sofa','客厅沙发',2040,4940,900,2000), F('tvstand','电视柜',4410,5650,1200,360,90), F('cabinet','猫砂盆',1990,8280,610,550), F('chair','餐椅一',3660,1900,450,480), F('chair','餐椅二',5100,1900,450,480)];}
 
 function defaultState(){
   const rooms = {}; ROOMS.forEach(r => rooms[r.id] = {name:r.name, mat:r.mat});
@@ -473,13 +473,15 @@ function fixState(s){
 
   s.demolished = s.demolished || []; s.measures = s.measures || [];
   if (!s.tvOrientationV2) { const tv = s.furniture.find(f => f.name === '电视柜' && f.w === 360 && f.d === 1200 && f.rot === 0); if (tv) Object.assign(tv, {w:1200,d:360,rot:90}); s.tvOrientationV2 = true; }
-  if (!s.layoutFixV8){
+  if (!s.layoutFixV9){
     ['guest','living','master'].forEach(id => { if (s.rooms[id]) s.rooms[id].mat = 'tile800'; });
     const sc = s.furniture.find(f => f.name === '入户鞋柜'); if (sc) Object.assign(sc, {cx:4480, cy:450, rot:90});
     const bd = s.furniture.find(f => f.name === '主卧床'); if (bd) Object.assign(bd, {cx:6750, cy:7300, rot:90});
-    ['猫爬架','机器人基站预留','次卧储物柜','次卧梳妆台','梳妆凳'].forEach(n => { s.furniture = s.furniture.filter(f => f.name !== n); });
-    if (!s.furniture.some(f => f.name === '次卧双人床')) s.furniture.push(F('bed','次卧双人床',2040,1240,1500,2000,0,'#d8c7dc'));
-    s.layoutFixV8 = true;
+    const wa = s.furniture.find(f => f.name === '洗烘一体机'); if (wa) wa.rot = 180;
+    const gb = s.furniture.find(f => f.name === '次卧双人床'); if (gb) Object.assign(gb, {cx:1240, cy:990, rot:270});
+    ['猫爬架','机器人基站预留','次卧储物柜','次卧梳妆台','梳妆凳','洗碗机预留'].forEach(n => { s.furniture = s.furniture.filter(f => f.name !== n); });
+    if (!s.furniture.some(f => f.name === '次卧双人床')) s.furniture.push(F('bed','次卧双人床',1240,990,1500,2000,270,'#d8c7dc'));
+    s.layoutFixV9 = true;
   }
   return s;
 }
@@ -2326,9 +2328,11 @@ function buildFurn(){
     ['upperplan','主卧东南角吊柜',7450,8170,440,440,2.2,.45],
     ['upperplan','门外吊柜·语音盒子',5670,3025,550,300,2.2,.40,90],
     ['upperplan','门外吊柜·WiFi',5670,3575,550,300,2.2,.40,90],
+    ['upperplan','主卧衣柜顶柜',6710,5315,1820,550,2.2,.45],
+    ['acwall','客厅空调位',6125,365,900,250,0,0],
+    ['dishwasher','灶下蒸烤微一体柜',8700,1600,600,600,0,0],
     ['upperplan','烟机周边柜',8785,1580,400,600,1.95,.70],['upperplan','水槽上方柜',8780,2420,400,700,1.62,1.03],
-    ['spiceplan','灶旁手动升降调料架示意',8560,2040,220,240,0,0],['riceplan','已有电饭煲',7480,3120,280,280,0,0],
-    ['fryerplan','已有空气炸锅',8100,3120,270,300,0,0],['filterplan','水槽下净水器示意',8700,2420,260,350,0,0]
+    ['spiceplan','灶旁手动升降调料架示意',8560,2040,220,240,0,0],['filterplan','水槽下净水器示意',8700,2420,260,350,0,0]
   ];
   planned.forEach(([type,name,cx,cy,w,d,base,height,rot])=>{const f=F(type,name,cx,cy,w,d,rot||0);f.base=base;f.height=height;const obj=buildFurniture(f);obj.traverse(o=>{if(o.userData)delete o.userData.fid;});furnG.add(obj);});
   furnG.visible = opt.furn; selKey = null; applyGrow();
